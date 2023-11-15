@@ -1,18 +1,19 @@
 {
+    "version": 2,
     "builds": [
         {
-            "src": "mirrorwebapp/wsgi.py",
-            "use": "@vercel/python",
-            "config": {
-                "maxLambdaSize": "15mb",
-                "runtime": "python3.10.0"
-            }
+            "src": "mirrorweb/mirrorweb/wsgi.py",
+            "use": "@vercel/python"
         }
     ],
     "routes": [
         {
+            "src": "/static/(.*)",
+            "dest": "/mirrorweb/mirrorwebapp/static/$1"
+        },
+        {
             "src": "/(.*)",
-            "dest": "mirrorwebapp/wsgi.py"
+            "dest": "/mirrorweb/mirrorweb/wsgi.py"
         }
     ]
 }
