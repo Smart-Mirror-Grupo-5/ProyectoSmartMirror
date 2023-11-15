@@ -1,23 +1,27 @@
 {
     "version": 2,
     "builds": [
-        {
-            "src": "mirrorweb/wsgi.py",
-            "use": "@vercel/python",
-            "config": {
-                "maxLambdaSize": "15mb",
-                "runtime": "python3.9"
-            }
+      {
+        "src": "versel_deploymet/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.10.0" }
+      },
+      {
+        "src": "build_files.sh",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "staticfiles_build"
         }
+      }
     ],
     "routes": [
-        {
-            "src": "/mirrorwebapp/static/(.*)",
-            "dest": "mirrorwebapp/static/mirrorwebapp/$1"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "mirrorweb/wsgi.py"
-        }
+      {
+        "src": "/static/(.*)",
+        "dest": "/static/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "versel_deploymet/wsgi.py"
+      }
     ]
-}
+  }
