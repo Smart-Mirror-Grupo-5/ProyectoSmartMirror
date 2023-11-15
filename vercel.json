@@ -13,7 +13,7 @@
     "routes": [
         {
             "src": "/static/(.*)",
-            "dest": "mirrorweb/static/$1"
+            "dest": "mirrorwebapp/static/mirrorwebapp/$1"
         },
         {
             "src": "/(.*)",
