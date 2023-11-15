@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
         {
-            "src": "mirrorweb/mirrorweb/wsgi.py",
+            "src": "mirrorweb/wsgi.py",
             "use": "@vercel/python"
         }
     ],
@@ -13,7 +13,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "/mirrorweb/mirrorweb/wsgi.py"
+            "dest": "/mirrorweb/wsgi.py"
         }
     ]
 }
