@@ -12,6 +12,10 @@
     ],
     "routes": [
         {
+            "src": "/static/(.*)",
+            "dest": "mirrorweb/static/$1"
+        },
+        {
             "src": "/(.*)",
             "dest": "mirrorweb/wsgi.py"
         }
