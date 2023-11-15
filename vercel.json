@@ -13,11 +13,11 @@
     "routes": [
         {
             "src": "/static/(.*)",
-            "dest": "mirrorwebapp/static/mirrorwebapp/$1"
+            "dest": "/mirrorwebapp/static/$1"
         },
         {
             "src": "/(.*)",
-            "dest": "mirrorweb/wsgi.py"
+            "dest": "/mirrorweb/wsgi.py"
         }
     ]
 }
