@@ -1,5 +1,5 @@
 """
-ASGI config for versel_deploymet project.
+ASGI config for mirrorweb project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'versel_deploymet.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mirrorweb.settings')
 
 application = get_asgi_application()

@@ -1,5 +1,5 @@
 """
-WSGI config for versel_deploymet project.
+WSGI config for mirrorweb project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,7 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'versel_deploymet.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mirrorweb.settings')
 
 application = get_wsgi_application()
 
