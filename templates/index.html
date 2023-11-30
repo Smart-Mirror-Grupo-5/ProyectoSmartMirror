@@ -1,4 +1,3 @@
-<!--Html básico-->
 <!DOCTYPE html>
 <html lang="es">
 
@@ -11,12 +10,19 @@
 </head>
 
 <body>
-    <header>
-        <h1>Sitio en Construcción</h1>
-    </header>
-    <img src="{% static 'images/pagina-en-construcción.jpg' %}" alt="En Construcción">
-
-    <p>Estamos trabajando para mejorar nuestro sitio. Disculpa las molestias.</p>
+    <div class="container">
+        <div class="logo">
+            <img src="{% static 'images/logo.png' %}" alt="Logo">
+        </div>
+        <form class="formulario_inicio">
+            <div class="column">
+                <input type="text" placeholder="Usuario" name="text" class="input">
+                <input type="password" placeholder="Contraseña" name="text" class="input">
+                <input type="submit" value="Iniciar Sesión" class="button">
+            </div>
+        </form>
+        <a href="recuperar_contraseña.html" class="olvidar-contraseña">¿Olvidaste tu contraseña?</a>
+    </div>
 </body>
 
 </html>
