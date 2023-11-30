@@ -9,3 +9,6 @@ def login(request):
 
 def index(request):
     return render(request, 'index.html')
+
+def espejo(request):
+    return render(request, 'espejo.html')
