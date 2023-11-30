@@ -18,6 +18,15 @@ body {
   border: 3px solid #070707;
   box-shadow: 0 0px 7px -5px rgba(0, 0, 0, 0.5);
   padding: 30px;
+  position: absolute;
+  top: 50%;
+  /* Ajusta la posición verticalmente según tu diseño */
+  left: 50%;
+  /* Ajusta la posición horizontalmente según tu diseño */
+  transform: translate(-50%, -50%);
+  /* Centra el contenido */
+  z-index: 1;
+  /* Coloca el contenido por encima del fondo */
 }
 
 .form {
@@ -64,7 +73,7 @@ img {
   border: 2px solid var(--main-color);
   background-color: var(--bg-color);
   box-shadow: 4px 4px var(--main-color);
-  font-size: 15px;
+  font-size: 28px;
   font-weight: 600;
   color: var(--font-color);
   padding: 5px 10px;
