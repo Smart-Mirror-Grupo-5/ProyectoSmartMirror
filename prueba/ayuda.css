@@ -11,32 +11,30 @@ body {
 
 .container {
     position: relative;
-    width: 100%;
+    width: 80%;
     max-width: 600px; /* Ajusta según sea necesario */
-    border-radius: 10px; 
-}
-
-.mirror, .user {
-    width: 80%; /* Ajusta según sea necesario */
-    padding: 20px;
+    margin: 0 auto;
     background-color: #fff;
-    margin: 20px auto; /* Ajusta según sea necesario */
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    border-radius: 10px; 
 }
 
-.arrow {
-    margin-left: 10px;
-    color: #2a6dbe; /* Cambia el color de la flecha según tus preferencias */
+.mirror {
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+p {
+    margin-bottom: 15px;
+    color: #555;
 }
 
 /* Estilos adicionales para mejorar la apariencia en dispositivos más pequeños */
 @media only screen and (max-width: 400px) {
-    .mirror, .user {
+    .container {
         width: 90%;
     }
-
-
 }
-
