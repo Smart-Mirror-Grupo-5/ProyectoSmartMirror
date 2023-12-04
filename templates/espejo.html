@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
-
+    <link href='https://fonts.googleapis.com/css?family=Chivo' rel='stylesheet'>
     <link rel="stylesheet" href="{% static 'css/espejo.css' %}">
 </head>
+
 <body>
-    <div class="container">
-        <p>Prueba</p>
+    <div class="mensaje">
+        <h1>Hola</h1>
+    </div>
+    <div class="mensaje_bot">
+        <h1>Hola!</h1>
+    </div>
+    <div class="mensaje_usuario">
+        <h1>Tiempo hoy</h1>
+    </div>
+    <div class="mensaje_bot">
+        <h1>Nublado, crack</h1>
+    </div>
+    <div class="wrap">
+        <button id="animatedButton" class="button"><img src="{% static 'images/microfono.png' %}" alt=""></button>
     </div>
 </body>
+
 </html>
