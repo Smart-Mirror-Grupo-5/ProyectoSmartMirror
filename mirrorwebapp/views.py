@@ -1,7 +1,32 @@
 # mirrorwebapp/views.py
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from .models import DatosPersona
+from django.views.decorators.csrf import csrf_exempt
+from .audio import Transcribir
+import pyaudio
+
+
+@csrf_exempt
+def transcribir_audio(request):
+    if request.method == 'POST':
+        formato = pyaudio.paInt16
+        canales = 1
+        tasa_muestreo = 44100
+        tamanio = 1024
+        tamanio_bufer = 512
+        duracion_grabacion = 5
+        ruta_archivo = 'static/audio/audio.wav'
+
+        transcribir = Transcribir(formato, canales, tasa_muestreo,
+                                  tamanio, tamanio_bufer, duracion_grabacion, ruta_archivo)
+
+        recogida_audio = transcribir.grabacion_de_audio()
+
+        # Devuelve la transcripción como JSON
+        return JsonResponse({'transcripcion': recogida_audio})
+
+    return JsonResponse({'error': 'Método no permitido'}, status=405)
 
 
 def entrar(request):

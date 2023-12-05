@@ -128,9 +128,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Obtener el hostname del sitio web de las variables de entorno de Azure
-WEBSITE_HOSTNAME = os.environ.get('WEBSITE_HOSTNAME', 'localhost')
-
-# Establecer los orígenes de confianza para CSRF
-CSRF_TRUSTED_ORIGINS = ['https://' + WEBSITE_HOSTNAME]
