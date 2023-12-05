@@ -78,12 +78,7 @@ WSGI_APPLICATION = 'mirrorweb.wsgi.app'
 # Note: Django modules for using databases are not support in serverless
 # environments like Vercel. You can use a database over HTTP, hosted elsewhere.
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+DATABASES = {}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
