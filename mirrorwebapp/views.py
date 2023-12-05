@@ -1,16 +1,7 @@
 # mirrorwebapp/views.py
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import DatosPersona
-from .audio import Transcribir
-
-
-def ping(request):
-    return JsonResponse({'status': 'ok'})
-
-
-def transcribir_audio(request):
-    pass
 
 
 def entrar(request):
