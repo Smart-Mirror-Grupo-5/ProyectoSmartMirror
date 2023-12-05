@@ -16,6 +16,7 @@ urlpatterns = [
     path('ayuda/', views.ayuda, name='ayuda'),
     path('habitacion/', views.habitacion, name='habitacion'),
     path('transcribir_audio/', views.transcribir_audio, name='transcribir_audio'),
+    path('ping/', views.ping, name='ping'),
 ]
 
 

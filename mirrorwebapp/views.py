@@ -6,6 +6,10 @@ from .audio import Transcribir
 import pyaudio
 
 
+def ping(request):
+    return JsonResponse({'status': 'ok'})
+
+
 def transcribir_audio(request):
     if request.method == 'POST':
         formato = pyaudio.paInt16
