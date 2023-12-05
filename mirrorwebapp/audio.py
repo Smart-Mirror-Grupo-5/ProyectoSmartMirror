@@ -18,8 +18,8 @@ class Transcribir:
 
     def grabacion_de_audio(self):
         #si existe archivo de audio, borrarlo
-        if os.path.exists('audio_grabacion.wav'):
-            os.remove('audio_grabacion.wav')
+        if os.path.exists('static/audio/audio_grabacion.wav'):
+            os.remove('static/audio/audio_grabacion.wav')
         try:
             audio = pyaudio.PyAudio()
             stream = audio.open(format=self.formato, channels=self.canales,
@@ -75,20 +75,20 @@ tasa_muestreo = 44100
 tamanio = 1024
 tamanio_bufer = 512
 duracion_grabacion = 5
-ruta_archivo = 'audio_grabacion.wav'
+ruta_archivo = 'static/audio/audio_grabacion.wav'
 
 transcribir = Transcribir(formato, canales, tasa_muestreo,
                           tamanio, tamanio_bufer, duracion_grabacion, ruta_archivo)
 
 recogida_audio = transcribir.grabacion_de_audio()
 #guardar el texto en conversacion.txt
-f = open('conversacion.txt', 'w')
+f = open('static/audio/conversacion.txt', 'w')
 #guardar el texto
 f.write(str(recogida_audio))
 #cerrar el archivo
 f.close()
 
-texto = open('conversacion.txt', 'r')
+texto = open('static/audio/conversacion.txt', 'r')
 conversacion = texto.readlines()
 
 engine = pyttsx3.init()

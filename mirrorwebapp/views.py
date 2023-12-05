@@ -16,7 +16,7 @@ def transcribir_audio(request):
         tamanio = 1024
         tamanio_bufer = 512
         duracion_grabacion = 5
-        ruta_archivo = 'audio_grabacion.wav'
+        ruta_archivo = 'static/audio/audio.wav'
 
         transcribir = Transcribir(formato, canales, tasa_muestreo,
                                   tamanio, tamanio_bufer, duracion_grabacion, ruta_archivo)
