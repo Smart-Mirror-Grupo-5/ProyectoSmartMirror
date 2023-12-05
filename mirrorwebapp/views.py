@@ -2,12 +2,10 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from .models import DatosPersona
-from django.views.decorators.csrf import csrf_exempt
 from .audio import Transcribir
 import pyaudio
 
 
-@csrf_exempt
 def transcribir_audio(request):
     if request.method == 'POST':
         formato = pyaudio.paInt16
