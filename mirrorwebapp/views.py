@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 import requests
 import speech_recognition as sr
 
-
+'''
 @csrf_exempt
 def reconocer_voz(request):
     if request.method == 'POST':
@@ -31,13 +31,24 @@ def reconocer_voz(request):
         elif speech_recognition_result.reason == speechsdk.ResultReason.NoMatch:
             resultado = "No se pudo reconocer ningún discurso."
         elif speech_recognition_result.reason == speechsdk.ResultReason.Canceled:
-            resultado = f"Reconocimiento de voz cancelado: {
-                speech_recognition_result.cancellation_details.error_details}"
+            resultado = f"Reconocimiento de voz cancelado: {speech_recognition_result.cancellation_details.error_details}"
         contestacion = consulta(resultado)
 
         return JsonResponse({'resultado': resultado, 'contestacion': contestacion})
 
-    return render(request, 'espejo.html')
+    return render(request, 'espejo.html')'''
+
+@csrf_exempt
+def respuesta(request):
+    if request.method == 'POST':
+        resultado = request.POST.get('texto', '')
+        contestacion = consulta(resultado)
+
+        # Enviar la respuesta de vuelta a la página
+        return JsonResponse({'resultado': resultado, 'contestacion': contestacion})
+    else:
+        # Manejar otras operaciones o métodos HTTP según sea necesario
+        return render(request, 'espejo.html')
 
 
 def login(request):

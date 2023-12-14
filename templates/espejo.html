@@ -20,7 +20,72 @@
         <button id="startRecognition">Iniciar Reconocimiento de Voz</button>
         <button id="borrarConversacion">Borrar Conversación</button>
     </div>
+    <div id="input_texto" style="text-align: center; margin: auto;">
+        <textarea id="texto" placeholder="Escribe aquí..." style="width: 3000px; height: 200px; font-size: 100px;"></textarea>    
+        <br>
+        <button id="enviar">Enviar</button>
+    </div>
     <script>
+        $(document).ready(function () {
+            $('#enviar').click(function () {
+                var texto = $('#texto').val();
+
+                $.ajax({
+                    url: "/respuesta/",  // Reemplaza "/tu-vista-de-django/" con la URL correcta de tus vistas de Django
+                    type: "POST",
+                    data: { texto: texto },
+                    success: function (response) {
+                        console.log(response);
+
+                        // Limpiar el textarea después de enviar
+                        $('#texto').val('');
+
+                        // Agregar la pregunta a la conversación
+                        var pregunta = "<h1>Pregunta: " + response.resultado + "</h1>";
+                        var divPregunta = $('<div class="mensaje_usuario"></div>').append(pregunta);
+                        $('#conversacion').append(divPregunta);
+
+                        // Llamar a la función para obtener la respuesta y actualizar la conversación
+                        obtenerRespuesta(response.resultado);
+                    },
+                    error: function (xhr, errmsg, err) {
+                        console.log(xhr.status + ": " + xhr.responseText);
+                    }
+                });
+            });
+
+            $('#borrarConversacion').click(function () {
+                // Limpiar el div de la conversación
+                $('#conversacion').empty();
+            });
+
+            function obtenerRespuesta(resultado) {
+                $.ajax({
+                    url: "/respuesta/",
+                    type: "POST",
+                    data: { texto: resultado },
+                    success: function (response) {
+                        console.log(response);
+
+                        // Agregar la respuesta a la conversación
+                        var respuesta = "<h1>Respuesta: " + response.contestacion + "</h1>";
+                        var divRespuesta = $('<div class="mensaje_bot"></div>').append(respuesta);
+                        $('#conversacion').append(divRespuesta);
+                        var speech = new SpeechSynthesisUtterance();
+                        speech.lang = 'es-ES';
+                        speech.text = response.contestacion;
+                        speech.rate = 2;
+
+                        speechSynthesis.speak(speech);
+                    },
+                    error: function (xhr, errmsg, err) {
+                        console.log(xhr.status + ": " + xhr.responseText);
+                    }
+                });
+            }
+        });
+
+        /*
         $('#startRecognition').click(function () {
             $.ajax({
                 url: "/reconocer-voz/",
@@ -51,6 +116,7 @@
         $('#borrarConversacion').click(function () {
             $('#conversacion').empty();
         });
+        */
     </script>
 </body>
 
