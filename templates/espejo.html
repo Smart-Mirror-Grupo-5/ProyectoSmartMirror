@@ -50,7 +50,7 @@
                         $('#texto').val('');
 
                         // Agregar la pregunta a la conversación
-                        var pregunta = "<h1>Pregunta: " + response.resultado + "</h1>";
+                        var pregunta = "<h1>" + response.resultado + "</h1>";
                         var divPregunta = $('<div class="mensaje_usuario"></div>').append(pregunta);
                         $('#conversacion').append(divPregunta);
 
