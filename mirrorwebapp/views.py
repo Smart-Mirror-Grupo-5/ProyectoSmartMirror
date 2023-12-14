@@ -4,9 +4,7 @@ from django.shortcuts import render, redirect
 from .models import DatosPersona
 from .respuestas import consulta
 from django.views.decorators.csrf import csrf_exempt
-from bs4 import BeautifulSoup
-import requests
-import speech_recognition as sr
+#import speech_recognition as sr
 
 '''
 @csrf_exempt
