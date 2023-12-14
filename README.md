@@ -1,2 +1,3 @@
-# Prueba
-https://smartmirrorresidencia.azurewebsites.net/
+# Smart Mirror
+
+http://smartmirrorgrupo5.azurewebsites.net/
