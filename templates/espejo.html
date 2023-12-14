@@ -27,11 +27,20 @@
     </div>
     <script>
         $(document).ready(function () {
-            $('#enviar').click(function () {
+            $('#enviar').click(enviarMensaje);
+
+            $('#texto').keypress(function (e) {
+                if (e.which === 13) {
+                    // Si se presiona la tecla Enter, enviar el mensaje
+                    enviarMensaje();
+                }
+            });
+
+            function enviarMensaje() {
                 var texto = $('#texto').val();
 
                 $.ajax({
-                    url: "/respuesta/",  // Reemplaza "/tu-vista-de-django/" con la URL correcta de tus vistas de Django
+                    url: "/respuesta/",
                     type: "POST",
                     data: { texto: texto },
                     success: function (response) {
@@ -52,7 +61,7 @@
                         console.log(xhr.status + ": " + xhr.responseText);
                     }
                 });
-            });
+            }
 
             $('#borrarConversacion').click(function () {
                 // Limpiar el div de la conversación
@@ -74,7 +83,7 @@
                         var speech = new SpeechSynthesisUtterance();
                         speech.lang = 'es-ES';
                         speech.text = response.contestacion;
-                        speech.rate = 2;
+                        speech.rate = 1;
 
                         speechSynthesis.speak(speech);
                     },
