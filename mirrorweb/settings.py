@@ -26,8 +26,7 @@ SECRET_KEY = 'django-insecure-=cldztbc4jg&xl0!x673!*v2_=p$$eu)=7*f#d0#zs$44xx-h^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app',
-                 '.now.sh', 'smartmirrorgrupo5.azurewebsites.net']
+ALLOWED_HOSTS = ['127.0.0.1', 'smartmirrorresidencia.azurewebsites.net', '169.254.131.3:8000']
 
 
 # Application definition
@@ -40,6 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mirrorwebapp'
+]
+
+# Lista de orígenes permitidos para CSRF
+CSRF_TRUSTED_ORIGINS = [
+    'https://smartmirrorresidencia.azurewebsites.net',
+    # Agrega aquí otros orígenes permitidos si los hay
 ]
 
 MIDDLEWARE = [

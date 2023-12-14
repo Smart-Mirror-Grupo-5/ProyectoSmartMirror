@@ -6,16 +6,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.espejo, name='espejo'),
     path('index/', views.index, name='index'),
     path('login/', views.login, name='login'),
     path('espejo/', views.espejo, name='espejo'),
     path('procesar_formulario/', views.procesar_formulario,name='procesar_formulario'),
-    path('entrar/', views.entrar, name='entrar'),
     path('añadirusuario/', views.añadirusuario, name='añadirusuario'),
     path('ayuda/', views.ayuda, name='ayuda'),
     path('habitacion/', views.habitacion, name='habitacion'),
-    path('transcribir_audio/', views.transcribir_audio, name='transcribir_audio'),
+    path('reconocer-voz/', views.reconocer_voz, name='reconocer_voz'),
 ]
 
 

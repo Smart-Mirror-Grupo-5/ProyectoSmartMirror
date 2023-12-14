@@ -5,46 +5,53 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat</title>
+    <title>Reconocimiento de Voz</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="{% static 'css/espejo.css' %}" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Chivo' rel='stylesheet'>
-    <link rel="stylesheet" href="{% static 'css/espejo.css' %}">
+    <link rel="icon" href="{% static 'images/logo.ico' %}">
+
 </head>
 
 <body>
-    <div class="mensaje_bot">
-        <h1>Hola!</h1>
-    </div>
-    <div id="mensajeUsuarioContainer"></div>
-    <div class="wrap">
-        <button id="animatedButton" class="button"><img src="{% static 'images/microfono.png' %}" alt=""></button>
+
+    <div id="conversacion"></div>
+    <div class = "botones">
+        <button id="startRecognition">Iniciar Reconocimiento de Voz</button>
+        <button id="borrarConversacion">Borrar Conversación</button>
     </div>
     <script>
-        let contador = 1; // Variable para mantener un conteo de los mensajes del usuario
-        document.getElementById('animatedButton').addEventListener('click', function () {
-            fetch('/transcribir_audio/', {
-                method: 'POST',
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // Obtener la hora actual
-                    const now = new Date();
-                    const hora = now.toLocaleTimeString();
+        $('#startRecognition').click(function () {
+            $.ajax({
+                url: "/reconocer-voz/",
+                type: "POST",
+                success: function (response) {
+                    console.log(response);
+                    var pregunta = "<h1>Pregunta: " + response.resultado + "</h1>";
+                    var respuesta = "<h1>Respuesta: " + response.contestacion + "</h1>";
 
-                    // solo la hora y minutos
-                    const horaMinutos = hora.split(':').slice(0, 2).join(':');
+                    var divPregunta = $('<div class="mensaje_usuario"></div>').append(pregunta);
+                    var divRespuesta = $('<div class="mensaje_bot"></div>').append(respuesta);
 
-                    // Crear un div para el mensaje del usuario con la hora y mostrar el texto de la transcripción
-                    const mensajeUsuarioContainer = document.getElementById('mensajeUsuarioContainer');
-                    const nuevoDiv = document.createElement('div');
-                    nuevoDiv.className = 'mensaje_usuario';
-                    nuevoDiv.innerHTML = `<h1>${data.transcripcion} <strong>${horaMinutos}</strong></h1>`;
-                    mensajeUsuarioContainer.appendChild(nuevoDiv);
-                    contador++; // Incrementar el contador para el siguiente mensaje
-                })
-                .catch(error => console.error('Error:', error));
+                    $('#conversacion').append(divPregunta).append(divRespuesta);
+
+                    var speech = new SpeechSynthesisUtterance();
+                    speech.lang = 'es-ES';
+                    speech.text = response.contestacion;
+                    speech.rate = 2;
+
+                    speechSynthesis.speak(speech);
+                },
+                error: function (xhr, errmsg, err) {
+                    console.log(xhr.status + ": " + xhr.responseText);
+                }
+            });
+        });
+
+        $('#borrarConversacion').click(function () {
+            $('#conversacion').empty();
         });
     </script>
 </body>
-
 
 </html>

@@ -2,32 +2,45 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from .models import DatosPersona
+from .respuestas import consulta
 from django.views.decorators.csrf import csrf_exempt
-from .audio import Transcribir
-import pyaudio
+import azure.cognitiveservices.speech as speechsdk
+from bs4 import BeautifulSoup
+import requests
+import speech_recognition as sr
 
 
 @csrf_exempt
-def transcribir_audio(request):
+def reconocer_voz(request):
     if request.method == 'POST':
-        canales = 1
-        tasa_muestreo = 44100
-        tamanio_bufer = 512
-        duracion_grabacion = 5
-        ruta_archivo = 'static/audio/audio.wav'
+        SPEECH_KEY = '3c6987d5f8264f6eafe7d3eb9929e5f8'
+        SPEECH_REGION = 'westeurope'
 
-        transcribir = Transcribir(
-            canales, tasa_muestreo, tamanio_bufer, duracion_grabacion, ruta_archivo)
+        speech_config = speechsdk.SpeechConfig(
+            subscription=SPEECH_KEY, region=SPEECH_REGION)
+        speech_config.speech_recognition_language = "es-ES"
 
-        recogida_audio = transcribir.grabacion_de_audio()
+        audio_config = speechsdk.audio.AudioConfig(use_default_microphone=True)
+        speech_recognizer = speechsdk.SpeechRecognizer(
+            speech_config=speech_config, audio_config=audio_config)
 
-        # Devuelve la transcripción como JSON
-        return JsonResponse({'transcripcion': recogida_audio})
+        speech_recognition_result = speech_recognizer.recognize_once_async().get()
 
-    return JsonResponse({'error': 'Método no permitido'}, status=405)
+        if speech_recognition_result.reason == speechsdk.ResultReason.RecognizedSpeech:
+            resultado = speech_recognition_result.text
+        elif speech_recognition_result.reason == speechsdk.ResultReason.NoMatch:
+            resultado = "No se pudo reconocer ningún discurso."
+        elif speech_recognition_result.reason == speechsdk.ResultReason.Canceled:
+            resultado = f"Reconocimiento de voz cancelado: {
+                speech_recognition_result.cancellation_details.error_details}"
+        contestacion = consulta(resultado)
+
+        return JsonResponse({'resultado': resultado, 'contestacion': contestacion})
+
+    return render(request, 'espejo.html')
 
 
-def entrar(request):
+def login(request):
     if request.method == 'POST':
         nombre_usuario = request.POST.get('nombre')
         contraseña = request.POST.get('contraseña')
@@ -37,11 +50,6 @@ def entrar(request):
 
         error_message = "Credenciales incorrectas. Inténtalo de nuevo."
         return render(request, 'login.html', {'error_message': error_message})
-
-    return render(request, 'login.html')
-
-
-def login(request):
     return render(request, 'login.html')
 
 
