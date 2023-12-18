@@ -84,7 +84,7 @@ def respuesta_tipo(entrada):
     trabalenguas = ['El cielo está enladrillado, ¿quién lo desenladrillará? El desenladrillador que lo desenladrille, buen desenladrillador será.',
                     'Tres tristes tigres comen trigo en un trigal.',
                     'Pablito clavó un clavito, ¿qué clavito clavó Pablito?']
-
+    
     palabras_entrada = entrada.split()
 
     if entrada in saludos or any(palabra == 'hola' for palabra in palabras_entrada):
@@ -101,6 +101,14 @@ def respuesta_tipo(entrada):
         return random.choice(trabalenguas)
     elif any(palabra in ['nombre', 'llamas', 'llamo'] for palabra in palabras_entrada):
         return 'Por ahora no tengo un nombre'
+    elif any(palabra in ['cabeza', 'tomar'] for palabra in palabras_entrada):
+        return 'Analgésicos. Los analgésicos simples disponibles sin receta médica suelen ser la primera línea de tratamiento para reducir el dolor de cabeza.'
+    elif any(palabra in ['analgesicos'] for palabra in palabras_entrada):
+        return 'La dosis oral en adultos suele ser de 50 a 100 mg cada 6-8 h.'
+    elif any(palabra in ['emergencias'] for palabra in palabras_entrada):
+        return 'Es el número 112'
+    elif any(palabra in ['ayunas'] for palabra in palabras_entrada):
+        return 'Por lo general, usted necesita ayunar por 8 a 12 horas antes de una prueba.'
     else:
         return None
 
