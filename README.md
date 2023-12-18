@@ -1,3 +1,3 @@
 # Smart Mirror
 
-http://smartmirrorgrupo5.azurewebsites.net/
+https://smartmirrorgrupo5.azurewebsites.net/
