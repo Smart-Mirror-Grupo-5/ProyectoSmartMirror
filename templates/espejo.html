@@ -80,17 +80,29 @@
                         var respuesta = "<h1>Respuesta: " + response.contestacion + "</h1>";
                         var divRespuesta = $('<div class="mensaje_bot"></div>').append(respuesta);
                         $('#conversacion').append(divRespuesta);
+                        /**
                         var speech = new SpeechSynthesisUtterance();
                         speech.lang = 'es-ES';
                         speech.text = response.contestacion;
                         speech.rate = 1;
 
-                        speechSynthesis.speak(speech);
+                        speechSynthesis.speak(speech);**/
+                        // Utiliza la API de Google Translate para la síntesis de voz
+                        reproducirAudio(response.contestacion);
                     },
                     error: function (xhr, errmsg, err) {
                         console.log(xhr.status + ": " + xhr.responseText);
                     }
                 });
+            }
+
+            function reproducirAudio(texto) {
+                // Utiliza la URL de la API de Google Translate para obtener el audio
+                var audioUrl = "https://translate.google.com/translate_tts?ie=UTF-8&q=" + encodeURIComponent(texto) + "&tl=es&total=1&idx=0&textlen=" + texto.length + "&client=tw-ob";
+                
+                // Crea un elemento de audio y establece la fuente como la URL generada
+                var audioElement = new Audio(audioUrl);
+                audioElement.play();
             }
         });
 
