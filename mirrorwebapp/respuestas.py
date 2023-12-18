@@ -26,7 +26,7 @@ def google_answering(consulta):
 
         # Intenta encontrar la respuesta en distintos elementos HTML
         answer_elements = soup.find_all(['div', 'span'], class_=[
-                                        'Z0LcW t2b5Cf', 'hgKElc', 'wob_t q8U8x'])
+                                        'Z0LcW t2b5Cf', 'hgKElc', 'wob_t q8U8x', 'co8aDb', 'vk_bk dDoNo FzvWSb'])
 
         for element in answer_elements:
             if element:
