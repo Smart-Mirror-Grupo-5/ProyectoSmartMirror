@@ -95,13 +95,13 @@ def respuesta_tipo(entrada):
         return 'Un placer poder ayudarte.'
     elif any(palabra in ['cómo', 'tal', 'estás'] for palabra in palabras_entrada):
         return 'Estoy muy bien, gracias por preguntar.'
-    elif any(palabra in ['chiste', 'cuentame'] for palabra in palabras_entrada):
+    elif any(palabra in ['chiste'] for palabra in palabras_entrada):
         return random.choice(chistes)
-    elif any(palabra in ['trabalenguas', 'cuentame'] for palabra in palabras_entrada):
+    elif any(palabra in ['trabalenguas'] for palabra in palabras_entrada):
         return random.choice(trabalenguas)
     elif any(palabra in ['nombre', 'llamas', 'llamo'] for palabra in palabras_entrada):
         return 'Por ahora no tengo un nombre'
-    elif any(palabra in ['cabeza', 'tomar'] for palabra in palabras_entrada):
+    elif any(palabra in ['cabeza'] for palabra in palabras_entrada):
         return 'Analgésicos. Los analgésicos simples disponibles sin receta médica suelen ser la primera línea de tratamiento para reducir el dolor de cabeza.'
     elif any(palabra in ['analgesicos'] for palabra in palabras_entrada):
         return 'La dosis oral en adultos suele ser de 50 a 100 mg cada 6-8 h.'
